@@ -12,3 +12,26 @@ services:
       - 8000:8000
     env_file:
       - ./envs/.env.dev
+
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=movies_dev
+
+
+  dbAdmin:
+    image: dpage/pgadmin4
+    env_file:
+      - ./envs/.env.dev
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - 5050:80
+
+volumes:
+  postgres_data:
+  pgadmin:
