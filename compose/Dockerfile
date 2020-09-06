@@ -18,8 +18,13 @@ COPY ./app/requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
-COPY ./app/entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+COPY ./app/entrypoint.sh /usr/src/entrypoint.sh
+RUN chmod +x /usr/src/entrypoint.sh
+
+# copy start.sh
+COPY ./app/start /usr/src/start
+RUN sed -i 's/\r$//g' /usr/src/start
+RUN chmod +x /usr/src/start
 
 # copy project
 COPY ./app /usr/src/app/

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+
+python /usr/src/app/manage.py flush --no-input
+python /usr/src/app/manage.py migrate
+
+exec /usr/local/bin/gunicorn MovieCatalog.wsgi --bind 0.0.0.0:8000
