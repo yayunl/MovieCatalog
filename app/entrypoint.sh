@@ -11,7 +11,15 @@ then
     echo "PostgreSQL started"
 fi
 
-#python manage.py flush --no-input
-#python manage.py migrate
+
+python manage.py flush --no-input
+python manage.py makemigrations movies
+python manage.py migrate
+
+if [ "$DEBUG" = 0 ]
+then
+  echo "Production env."
+  python /usr/src/app/manage.py collectstatic --noinput
+fi
 
 exec "$@"

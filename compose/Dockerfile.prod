@@ -24,9 +24,12 @@ COPY ./app/entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 
 # copy start.sh
-COPY ./compose/start.sh /start
-RUN sed -i 's/\r$//g' /start
-RUN chmod +x /start
+COPY ./compose/start-prod.sh /usr/src/start
+RUN sed -i 's/\r$//g' /usr/src/start
+RUN chmod +x /usr/src/start
+
+# create staticfiles
+RUN mkdir /usr/src/staticfiles
 
 # copy project
 COPY ./app /usr/src/app/

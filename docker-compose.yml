@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/Dockerfile
-#    command: /user/src/app/start
-    command: tail -f /dev/null
+    command: /usr/src/start
+#    command: tail -f /dev/null
     volumes:
       - ./app/:/usr/src/app/
     ports:
@@ -16,14 +16,13 @@ services:
     depends_on:
       - db
 
+
   db:
     image: postgres:12-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=movies_dev
+    env_file:
+      - ./envs/.env.dev
 
 
   dbAdmin:

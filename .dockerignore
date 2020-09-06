@@ -3,3 +3,4 @@ venv
 Dockerfile
 Dockerfile.prod
 envs
+.pyttest_cache

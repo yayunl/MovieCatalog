@@ -22,7 +22,7 @@ COPY ./app/entrypoint.sh /usr/src/entrypoint.sh
 RUN chmod +x /usr/src/entrypoint.sh
 
 # copy start.sh
-COPY ./app/start /usr/src/start
+COPY ./compose/start.sh /usr/src/start
 RUN sed -i 's/\r$//g' /usr/src/start
 RUN chmod +x /usr/src/start
 

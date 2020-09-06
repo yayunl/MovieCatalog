@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes:
+      - staticfiles:/usr/src/staticfiles
+    ports:
+      - 80:80
+    depends_on:
+      - web
+      - dbAdmin
+
+  web:
+    build:
+      context: .
+      dockerfile: ./compose/Dockerfile
+    command: /usr/src/start
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./envs/.env.prod
+    depends_on:
+      - db
+
+
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./envs/.env.prod
+
+
+  dbAdmin:
+    image: dpage/pgadmin4
+    env_file:
+      - ./envs/.env.prod
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - 5050:80
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  pgadmin:
+  staticfiles:
