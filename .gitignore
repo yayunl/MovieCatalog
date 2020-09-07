@@ -4,3 +4,5 @@ venv
 *.sqlite3
 envs
 .pytest_cache
+staticfiles
+static

@@ -133,9 +133,10 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 
 # Rest framework
-# if not DEBUG:
-#     REST_FRAMEWORK = {
-#         "DEFAULT_RENDERER_CLASSES": (
-#             "rest_framework.renderers.JSONRenderer",
-#         )
-#     }
+# Change the render to JSONRenderer if the env is production.
+if not DEBUG:
+    REST_FRAMEWORK = {
+        "DEFAULT_RENDERER_CLASSES": (
+            "rest_framework.renderers.JSONRenderer",
+        )
+    }

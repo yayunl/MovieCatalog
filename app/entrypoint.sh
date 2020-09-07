@@ -18,7 +18,7 @@ python manage.py migrate
 
 if [ "$DEBUG" = 0 ]
 then
-  echo "Production env."
+  echo "Production environment."
   python /usr/src/app/manage.py collectstatic --noinput
 fi
 

@@ -6,7 +6,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     volumes:
-      - staticfiles:/usr/src/staticfiles
+      - staticfiles:/app/staticfiles
     ports:
       - 80:80
     depends_on:
@@ -20,6 +20,7 @@ services:
     command: /usr/src/start
     volumes:
       - ./app/:/usr/src/app/
+      - staticfiles:/usr/src/staticfiles
     ports:
       - 8000:8000
     env_file:
@@ -42,8 +43,6 @@ services:
       - ./envs/.env.prod
     volumes:
       - pgadmin:/root/.pgadmin
-    ports:
-      - 5050:80
     depends_on:
       - db
 
