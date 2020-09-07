@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+#    image: registry.heroku.com/ancient-temple-48054/nginx:latest
+    image: docker.pkg.github.com/yayunl/moviecatalog/nginx:latest

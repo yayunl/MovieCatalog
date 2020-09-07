@@ -5,3 +5,4 @@ Dockerfile.prod
 envs
 .pyttest_cache
 *.sqlite3
+__pycache__
