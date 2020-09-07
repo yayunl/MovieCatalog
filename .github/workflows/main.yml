@@ -58,19 +58,20 @@ jobs:
           docker push ${{ env.NGINX_IMAGE }}
 
 
-  test:
-    name: Test Docker Images
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run pytest
-        env:
-          POSTGRES_DB: users
-          POSTGRES_USER: runner
-          POSTGRES_PASSWORD: runner
-          DATABASE_TEST_URL: postgres://runner:runner@postgres:5432/users
-        run: |
-          cd app
-          pytest -p no:warnings --cov=.
-          flake8 .
-          black --check --exclude=migrations .
-          isort ./*/*.py --check-only
+#  test:
+#    name: Test Docker Images
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Run pytest
+#        env:
+#          POSTGRES_DB: users
+#          POSTGRES_USER: runner
+#          POSTGRES_PASSWORD: runner
+#          DATABASE_TEST_URL: postgres://runner:runner@postgres:5432/users
+#        run: |
+#          cd app
+#          pytest -p no:warnings --cov=.
+#          flake8 .
+#          black --check --exclude=migrations .
+#          isort ./*/*.py --check-only
+
