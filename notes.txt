@@ -9,21 +9,22 @@
 ###########################
 
 1. Build web production image
-    * Build prod image for Heroku registry:
+    * Heroku registry:
         (Recommended) docker-compose -f _build_web_prod_image.yml build
         (Not recommended)  docker build -f compose/Dockerfile.prod -t registry.heroku.com/ancient-temple-48054/web ./app
 
-    * Build production package for GitHub registry:
+    * GitHub registry:
         (Recommended) docker-compose -f _build_web_prod_image.yml build
         (Not recommended) docker build -f compose/Dockerfile.prod -t docker.pkg.github.com/yayunl/moviecatalog/web:latest ./app
 
 
 2. Build nginx production image
-    * Build nginx image for Heroku registry:
+    * Heroku registry:
         (Recommended) docker-compose -f _build_nginx_prod_image.yml build
         (Not recommended) docker build -f nginx/Dockerfile -t registry.heroku.com/ancient-temple-48054/nginx ./nginx
 
-    * Build nginx package for GitHub registry:
+    * GitHub registry:
+        (Recommended) docker-compose -f _build_nginx_prod_image.yml build
         (Not recommended) docker build -f nginx/Dockerfile -t docker.pkg.github.com/yayunl/moviecatalog/nginx:latest ./nginx
 
 
@@ -42,7 +43,7 @@ Step 2 - Push images
     * docker push registry.heroku.com/ancient-temple-48054/web:latest
 
     2. Push nginx image
-    * docker push registry.heroku.com/ancient-temple-48054/nginx:latest
+    * docker push registry.heroku.com/ancient-temple-48054/moviecatalog-nginx:latest
 
 
 # Push images to GitHub registry
@@ -50,8 +51,8 @@ Step 1 - Login to github package repository
      * docker login docker.pkg.github.com -u yayunl -p Personal_Token_API
 
 Step 2 - Push packages to GitHub registry
-    1. Push llfadmin package:
+    1. Push web package:
     * docker push docker.pkg.github.com/yayunl/moviecatalog/web:latest
 
     2. Push nginx image:
-    * docker push docker.pkg.github.com/yayunl/moviecatalog/nginx:latest
+    * docker push docker.pkg.github.com/yayunl/moviecatalog/moviecatalog-nginx:latest
