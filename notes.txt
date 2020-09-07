@@ -56,3 +56,16 @@ Step 2 - Push packages to GitHub registry
 
     2. Push nginx image:
     * docker push docker.pkg.github.com/yayunl/moviecatalog/moviecatalog-nginx:latest
+
+
+#####################
+#
+#  Cheat sheet
+#
+#####################
+
+> Get heroku auth token
+    * heroku get
+
+> Get postgresql db url on Heroku
+    * heroku config:get DATABASE_URL

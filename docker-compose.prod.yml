@@ -21,7 +21,8 @@ services:
     volumes:
       - staticfiles:/usr/src/staticfiles
     env_file:
-      - ./envs/.env.prod
+      - .env
+#      - ./envs/.env.prod #--> Local dev
     depends_on:
       - db
 
@@ -31,13 +32,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./envs/.env.prod
+      - .env
+#      - ./envs/.env.prod
 
 
   dbAdmin:
     image: dpage/pgadmin4
     env_file:
-      - ./envs/.env.prod
+      - .env
+#      - ./envs/.env.prod
     volumes:
       - pgadmin:/root/.pgadmin
     depends_on:
