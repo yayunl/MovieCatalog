@@ -16,13 +16,10 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./compose/Dockerfile
+      dockerfile: ./compose/Dockerfile.prod
     command: /usr/src/start
     volumes:
-      - ./app/:/usr/src/app/
       - staticfiles:/usr/src/staticfiles
-    ports:
-      - 8000:8000
     env_file:
       - ./envs/.env.prod
     depends_on:

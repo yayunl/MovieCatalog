@@ -6,3 +6,4 @@ envs
 .pytest_cache
 staticfiles
 static
+notes.txt

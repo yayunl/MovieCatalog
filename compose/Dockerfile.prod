@@ -9,6 +9,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
 
+# create group `django`
+# add and run as non-root user
+RUN addgroup --system django \
+    && adduser --system --ingroup django myuser
 
 # install psycopg2 dependencies
 RUN apk update \
@@ -23,19 +27,20 @@ RUN pip install -r requirements.txt
 COPY ./app/entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 
-# copy start.sh
+# copy start-prod.sh
 COPY ./compose/start-prod.sh /usr/src/start
 RUN sed -i 's/\r$//g' /usr/src/start
 RUN chmod +x /usr/src/start
 
-# create staticfiles
+# create staticfiles folder
 RUN mkdir /usr/src/staticfiles
 
 # copy project
 COPY ./app /usr/src/app/
 
-# add and run as non-root user
-RUN adduser -D myuser
+# change ownership of the app folder
+RUN chown -R myuser:django /usr/src
+
 USER myuser
 
 # run entrypoint.sh
