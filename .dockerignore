@@ -6,3 +6,4 @@ envs
 .pyttest_cache
 *.sqlite3
 __pycache__
+_deploy_to_heroku
